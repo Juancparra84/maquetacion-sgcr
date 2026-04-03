@@ -1,0 +1,78 @@
+/* =============================================
+   SGCR — Estilos globales
+   Sistema de Gestión de Conjunto Residencial
+   Juan Carlos Parra Somoza — SENA ADSO 2025
+   ============================================= */
+
+/* Fuente global */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+  color: #343a40;
+}
+
+/* Paleta institucional */
+:root {
+  --sgcr-azul:       #0d6efd;
+  --sgcr-blanco:     #ffffff;
+  --sgcr-gris-claro: #f8f9fa;
+  --sgcr-gris-oscuro:#343a40;
+}
+
+/* Navbar */
+.navbar-sgcr {
+  background-color: var(--sgcr-azul);
+}
+.navbar-sgcr .navbar-brand,
+.navbar-sgcr .nav-link {
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+/* Cards */
+.card-sgcr {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+.card-sgcr:hover {
+  transform: translateY(-4px);
+}
+
+/* Botones */
+.btn-sgcr {
+  background-color: var(--sgcr-azul);
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+}
+.btn-sgcr:hover {
+  background-color: #0b5ed7;
+  color: #ffffff;
+}
+
+/* Títulos */
+.titulo-sgcr {
+  color: var(--sgcr-azul);
+  font-weight: 700;
+}
+
+/* Animación fade entrada */
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* Footer */
+.footer-sgcr {
+  background-color: var(--sgcr-azul);
+  color: #ffffff;
+  font-size: 0.85rem;
+  padding: 1rem 0;
+  text-align: center;
+}

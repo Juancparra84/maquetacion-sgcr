@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SGCR — Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- BLADE: @extends('layouts.app') -->
+<!-- BLADE: @section('content') -->
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-sgcr px-4">
+  <a class="navbar-brand" href="index.html">
+    <i class="fa-solid fa-building me-2"></i>SGCR
+  </a>
+  <button class="navbar-toggler border-white" type="button"
+          data-bs-toggle="collapse" data-bs-target="#navMenu">
+    <i class="fa-solid fa-bars text-white"></i>
+  </button>
+  <div class="collapse navbar-collapse" id="navMenu">
+    <ul class="navbar-nav ms-auto gap-2">
+      <li class="nav-item"><a class="nav-link active" href="index.html"><i class="fa-solid fa-house me-1"></i>Inicio</a></li>
+      <li class="nav-item"><a class="nav-link" href="residentes.html"><i class="fa-solid fa-users me-1"></i>Residentes</a></li>
+      <li class="nav-item"><a class="nav-link" href="pagos.html"><i class="fa-solid fa-dollar-sign me-1"></i>Pagos</a></li>
+      <li class="nav-item"><a class="nav-link" href="reservas.html"><i class="fa-solid fa-calendar me-1"></i>Reservas</a></li>
+      <li class="nav-item"><a class="nav-link" href="zonas.html"><i class="fa-solid fa-map-pin me-1"></i>Zonas</a></li>
+      <li class="nav-item"><a class="nav-link" href="contacto.html"><i class="fa-solid fa-envelope me-1"></i>Contacto</a></li>
+      <li class="nav-item">
+        <!-- BLADE: <form method="POST" action="{{ route('logout') }}"> -->
+        <a class="nav-link text-warning" href="login.html">
+          <i class="fa-solid fa-right-from-bracket me-1"></i>Salir
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div class="container py-5 fade-in">
+
+  <!-- Bienvenida -->
+  <div class="mb-4">
+    <h4 class="titulo-sgcr">
+      <!-- BLADE: Bienvenido, {{ Auth::user()->name }} -->
+      Bienvenido, Administrador
+    </h4>
+    <p class="text-secondary">Panel de control — Conjunto Residencial</p>
+  </div>
+
+  <!-- Tarjetas de resumen -->
+  <!-- BLADE: @php $stats = App\Services\DashboardService::getStats(); @endphp -->
+  <div class="row g-4 mb-5">
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card-sgcr bg-white p-4 text-center">
+        <i class="fa-solid fa-users fa-2x text-primary mb-2"></i>
+        <h3 class="titulo-sgcr mb-0">
+          <!-- BLADE: {{ $stats['residentes'] }} -->
+          48
+        </h3>
+        <p class="text-secondary mb-0">Residentes activos</p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card-sgcr bg-white p-4 text-center">
+        <i class="fa-solid fa-building fa-2x text-success mb-2"></i>
+        <h3 class="fw-bold text-success mb-0">
+          <!-- BLADE: {{ $stats['apartamentos'] }} -->
+          32
+        </h3>
+        <p class="text-secondary mb-0">Apartamentos ocupados</p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card-sgcr bg-white p-4 text-center">
+        <i class="fa-solid fa-triangle-exclamation fa-2x text-warning mb-2"></i>
+        <h3 class="fw-bold text-warning mb-0">
+          <!-- BLADE: {{ $stats['pagos_pendientes'] }} -->
+          7
+        </h3>
+        <p class="text-secondary mb-0">Pagos pendientes</p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card-sgcr bg-white p-4 text-center">
+        <i class="fa-solid fa-calendar-check fa-2x text-info mb-2"></i>
+        <h3 class="fw-bold text-info mb-0">
+          <!-- BLADE: {{ $stats['reservas_activas'] }} -->
+          5
+        </h3>
+        <p class="text-secondary mb-0">Reservas activas</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Accesos rápidos -->
+  <h5 class="titulo-sgcr mb-3">Accesos rápidos</h5>
+  <div class="row g-3">
+
+    <div class="col-12 col-sm-6 col-md-4">
+      <a href="residentes.html" class="text-decoration-none">
+        <div class="card-sgcr bg-white p-4 d-flex align-items-center gap-3">
+          <i class="fa-solid fa-user-plus fa-2x text-primary"></i>
+          <div>
+            <p class="fw-semibold mb-0">Gestionar Residentes</p>
+            <small class="text-secondary">Registrar, consultar, editar</small>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4">
+      <a href="pagos.html" class="text-decoration-none">
+        <div class="card-sgcr bg-white p-4 d-flex align-items-center gap-3">
+          <i class="fa-solid fa-money-bill-wave fa-2x text-success"></i>
+          <div>
+            <p class="fw-semibold mb-0">Registrar Pagos</p>
+            <small class="text-secondary">Cuotas y estados de cuenta</small>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4">
+      <a href="reservas.html" class="text-decoration-none">
+        <div class="card-sgcr bg-white p-4 d-flex align-items-center gap-3">
+          <i class="fa-solid fa-calendar-days fa-2x text-info"></i>
+          <div>
+            <p class="fw-semibold mb-0">Administrar Reservas</p>
+            <small class="text-secondary">Zonas comunes y horarios</small>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer-sgcr mt-5">
+  <!-- BLADE: @endsection -->
+  © 2025 SGCR — SENA ADSO · Juan Carlos Parra Somoza
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SGCR — Residentes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- BLADE: @extends('layouts.app') -->
+<!-- BLADE: @section('content') -->
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-sgcr px-4">
+  <a class="navbar-brand" href="index.html">
+    <i class="fa-solid fa-building me-2"></i>SGCR
+  </a>
+  <button class="navbar-toggler border-white" type="button"
+          data-bs-toggle="collapse" data-bs-target="#navMenu">
+    <i class="fa-solid fa-bars text-white"></i>
+  </button>
+  <div class="collapse navbar-collapse" id="navMenu">
+    <ul class="navbar-nav ms-auto gap-2">
+      <li class="nav-item"><a class="nav-link" href="index.html"><i class="fa-solid fa-house me-1"></i>Inicio</a></li>
+      <li class="nav-item"><a class="nav-link active" href="residentes.html"><i class="fa-solid fa-users me-1"></i>Residentes</a></li>
+      <li class="nav-item"><a class="nav-link" href="pagos.html"><i class="fa-solid fa-dollar-sign me-1"></i>Pagos</a></li>
+      <li class="nav-item"><a class="nav-link" href="reservas.html"><i class="fa-solid fa-calendar me-1"></i>Reservas</a></li>
+      <li class="nav-item"><a class="nav-link" href="zonas.html"><i class="fa-solid fa-map-pin me-1"></i>Zonas</a></li>
+      <li class="nav-item"><a class="nav-link" href="contacto.html"><i class="fa-solid fa-envelope me-1"></i>Contacto</a></li>
+      <li class="nav-item">
+        <a class="nav-link text-warning" href="login.html">
+          <i class="fa-solid fa-right-from-bracket me-1"></i>Salir
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- CONTENIDO -->
+<div class="container py-5 fade-in">
+
+  <!-- Encabezado + botón nuevo -->
+  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <div>
+      <h4 class="titulo-sgcr mb-0">Gestión de Residentes</h4>
+      <p class="text-secondary mb-0">Registro y consulta de residentes del conjunto</p>
+    </div>
+    <!-- BLADE: @can('admin') -->
+    <button class="btn btn-sgcr" data-bs-toggle="modal" data-bs-target="#modalNuevo">
+      <i class="fa-solid fa-user-plus me-2"></i>Nuevo Residente
+    </button>
+    <!-- BLADE: @endcan -->
+  </div>
+
+  <!-- Filtros de búsqueda -->
+  <div class="card-sgcr bg-white p-3 mb-4">
+    <!-- BLADE: <form method="GET" action="{{ route('residentes.index') }}"> -->
+    <div class="row g-2">
+      <div class="col-12 col-md-4">
+        <input type="text" class="form-control" placeholder="Buscar por nombre o cédula...">
+        <!-- BLADE: name="buscar" value="{{ request('buscar') }}" -->
+      </div>
+      <div class="col-12 col-md-3">
+        <select class="form-select">
+          <!-- BLADE: @foreach($torres as $torre) -->
+          <option value="">Todas las torres</option>
+          <option value="A">Torre A</option>
+          <option value="B">Torre B</option>
+          <option value="C">Torre C</option>
+          <!-- BLADE: @endforeach -->
+        </select>
+      </div>
+      <div class="col-12 col-md-2">
+        <button class="btn btn-sgcr w-100">
+          <i class="fa-solid fa-magnifying-glass me-1"></i>Buscar
+        </button>
+      </div>
+    </div>
+    <!-- BLADE: </form> -->
+  </div>
+
+  <!-- Tabla de residentes -->
+  <div class="card-sgcr bg-white p-3">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-primary">
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Cédula</th>
+            <th>Apartamento</th>
+            <th>Correo</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- BLADE: @forelse($residentes as $residente) -->
+          <tr>
+            <td>1</td>
+            <td><i class="fa-solid fa-circle-user text-primary me-2"></i>Juan Pérez</td>
+            <td>10234567</td>
+            <td><span class="badge bg-primary">Torre A — 101</span></td>
+            <td>juan@email.com</td>
+            <td><span class="badge bg-success">Activo</span></td>
+            <td>
+              <a href="#" class="btn btn-sm btn-outline-primary me-1">
+                <i class="fa-solid fa-eye"></i>
+              </a>
+              <!-- BLADE: @can('admin') -->
+              <a href="#" class="btn btn-sm btn-outline-warning me-1">
+                <i class="fa-solid fa-pen"></i>
+              </a>
+              <a href="#" class="btn btn-sm btn-outline-danger">
+                <i class="fa-solid fa-ban"></i>
+              </a>
+              <!-- BLADE: @endcan -->
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><i class="fa-solid fa-circle-user text-primary me-2"></i>María López</td>
+            <td>20345678</td>
+            <td><span class="badge bg-primary">Torre B — 203</span></td>
+            <td>maria@email.com</td>
+            <td><span class="badge bg-success">Activo</span></td>
+            <td>
+              <a href="#" class="btn btn-sm btn-outline-primary me-1">
+                <i class="fa-solid fa-eye"></i>
+              </a>
+              <a href="#" class="btn btn-sm btn-outline-warning me-1">
+                <i class="fa-solid fa-pen"></i>
+              </a>
+              <a href="#" class="btn btn-sm btn-outline-danger">
+                <i class="fa-solid fa-ban"></i>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><i class="fa-solid fa-circle-user text-primary me-2"></i>Carlos Ruiz</td>
+            <td>30456789</td>
+            <td><span class="badge bg-primary">Torre A — 305</span></td>
+            <td>carlos@email.com</td>
+            <td><span class="badge bg-danger">Inactivo</span></td>
+            <td>
+              <a href="#" class="btn btn-sm btn-outline-primary me-1">
+                <i class="fa-solid fa-eye"></i>
+              </a>
+              <a href="#" class="btn btn-sm btn-outline-warning me-1">
+                <i class="fa-solid fa-pen"></i>
+              </a>
+              <a href="#" class="btn btn-sm btn-outline-danger">
+                <i class="fa-solid fa-ban"></i>
+              </a>
+            </td>
+          </tr>
+          <!-- BLADE: @empty -->
+          <!-- BLADE: <tr><td colspan="7">No hay residentes registrados.</td></tr> -->
+          <!-- BLADE: @endforelse -->
+        </tbody>
+      </table>
+    </div>
+    <!-- Paginación -->
+    <div class="d-flex justify-content-end mt-3">
+      <!-- BLADE: {{ $residentes->links() }} -->
+      <nav>
+        <ul class="pagination mb-0">
+          <li class="page-item disabled"><a class="page-link">Anterior</a></li>
+          <li class="page-item active"><a class="page-link">1</a></li>
+          <li class="page-item"><a class="page-link">2</a></li>
+          <li class="page-item"><a class="page-link">Siguiente</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL Nuevo Residente -->
+<div class="modal fade" id="modalNuevo" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="border-radius:16px;">
+      <div class="modal-header" style="background-color:#0d6efd;">
+        <h5 class="modal-title text-white fw-bold">
+          <i class="fa-solid fa-user-plus me-2"></i>Nuevo Residente
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <!-- BLADE: <form method="POST" action="{{ route('residentes.store') }}"> -->
+        <form>
+          <!-- BLADE: @csrf -->
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Nombre completo</label>
+              <input type="text" class="form-control" placeholder="Ej. Juan Pérez" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Cédula</label>
+              <input type="text" class="form-control" placeholder="Ej. 10234567" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Correo electrónico</label>
+              <input type="email" class="form-control" placeholder="correo@ejemplo.com" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Teléfono</label>
+              <input type="tel" class="form-control" placeholder="Ej. 3001234567">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Torre</label>
+              <select class="form-select" required>
+                <option value="">Seleccionar...</option>
+                <option>Torre A</option>
+                <option>Torre B</option>
+                <option>Torre C</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Apartamento</label>
+              <input type="text" class="form-control" placeholder="Ej. 101" required>
+            </div>
+          </div>
+          <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-sgcr py-2">
+              <i class="fa-solid fa-floppy-disk me-2"></i>Guardar Residente
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer-sgcr mt-5">
+  © 2025 SGCR — SENA ADSO · Juan Carlos Parra Somoza
+</footer>
+<!-- BLADE: @endsection -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SGCR — Contacto</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- BLADE: @extends('layouts.app') -->
+<!-- BLADE: @section('content') -->
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-sgcr px-4">
+  <a class="navbar-brand" href="index.html">
+    <i class="fa-solid fa-building me-2"></i>SGCR
+  </a>
+  <button class="navbar-toggler border-white" type="button"
+          data-bs-toggle="collapse" data-bs-target="#navMenu">
+    <i class="fa-solid fa-bars text-white"></i>
+  </button>
+  <div class="collapse navbar-collapse" id="navMenu">
+    <ul class="navbar-nav ms-auto gap-2">
+      <li class="nav-item"><a class="nav-link" href="index.html"><i class="fa-solid fa-house me-1"></i>Inicio</a></li>
+      <li class="nav-item"><a class="nav-link" href="residentes.html"><i class="fa-solid fa-users me-1"></i>Residentes</a></li>
+      <li class="nav-item"><a class="nav-link" href="pagos.html"><i class="fa-solid fa-dollar-sign me-1"></i>Pagos</a></li>
+      <li class="nav-item"><a class="nav-link" href="reservas.html"><i class="fa-solid fa-calendar me-1"></i>Reservas</a></li>
+      <li class="nav-item"><a class="nav-link" href="zonas.html"><i class="fa-solid fa-map-pin me-1"></i>Zonas</a></li>
+      <li class="nav-item"><a class="nav-link active" href="contacto.html"><i class="fa-solid fa-envelope me-1"></i>Contacto</a></li>
+      <li class="nav-item">
+        <a class="nav-link text-warning" href="login.html">
+          <i class="fa-solid fa-right-from-bracket me-1"></i>Salir
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- CONTENIDO -->
+<div class="container py-5 fade-in">
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+
+      <!-- Encabezado -->
+      <div class="text-center mb-4">
+        <i class="fa-solid fa-headset fa-3x text-primary mb-2"></i>
+        <h4 class="titulo-sgcr">Contacto y Soporte</h4>
+        <p class="text-secondary">
+          ¿Tienes alguna inquietud? Escríbenos y te responderemos a la brevedad.
+        </p>
+      </div>
+
+      <!-- Formulario -->
+      <div class="card-sgcr bg-white p-4">
+        <!-- BLADE: <form method="POST" action="{{ route('contacto.enviar') }}"> -->
+        <form>
+          <!-- BLADE: @csrf -->
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Nombre completo</label>
+            <div class="input-group">
+              <span class="input-group-text bg-white">
+                <i class="fa-solid fa-user text-primary"></i>
+              </span>
+              <input type="text" class="form-control"
+                     placeholder="Tu nombre" required>
+              <!-- BLADE: value="{{ Auth::user()->name }}" -->
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Correo electrónico</label>
+            <div class="input-group">
+              <span class="input-group-text bg-white">
+                <i class="fa-solid fa-envelope text-primary"></i>
+              </span>
+              <input type="email" class="form-control"
+                     placeholder="correo@ejemplo.com" required>
+              <!-- BLADE: value="{{ Auth::user()->email }}" -->
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Asunto</label>
+            <select class="form-select" required>
+              <option value="">Seleccionar asunto...</option>
+              <option value="pago">Consulta sobre pagos</option>
+              <option value="reserva">Problema con reserva</option>
+              <option value="datos">Actualización de datos</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Mensaje</label>
+            <textarea class="form-control" rows="4"
+                      placeholder="Describe tu inquietud..." required></textarea>
+          </div>
+
+          <!-- BLADE: @if(session('success')) -->
+          <div class="alert alert-success d-none" id="alerta-ok">
+            <i class="fa-solid fa-circle-check me-2"></i>
+            Mensaje enviado correctamente. Te responderemos pronto.
+          </div>
+          <!-- BLADE: @endif -->
+
+          <div class="d-grid">
+            <button type="submit" class="btn btn-sgcr py-2">
+              <i class="fa-solid fa-paper-plane me-2"></i>Enviar Mensaje
+            </button>
+          </div>
+
+        </form>
+        <!-- BLADE: </form> -->
+      </div>
+
+      <!-- Info de contacto directo -->
+      <div class="row g-3 mt-3">
+        <div class="col-12 col-sm-4 text-center">
+          <div class="card-sgcr bg-white p-3">
+            <i class="fa-solid fa-phone text-primary mb-1"></i>
+            <p class="mb-0 fw-semibold" style="font-size:0.85rem;">Administración</p>
+            <small class="text-secondary">601 123 4567</small>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4 text-center">
+          <div class="card-sgcr bg-white p-3">
+            <i class="fa-solid fa-envelope text-primary mb-1"></i>
+            <p class="mb-0 fw-semibold" style="font-size:0.85rem;">Correo</p>
+            <small class="text-secondary">admin@sgcr.co</small>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4 text-center">
+          <div class="card-sgcr bg-white p-3">
+            <i class="fa-solid fa-clock text-primary mb-1"></i>
+            <p class="mb-0 fw-semibold" style="font-size:0.85rem;">Horario</p>
+            <small class="text-secondary">Lun–Vie 8am–5pm</small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer-sgcr mt-5">
+  © 2025 SGCR — SENA ADSO · Juan Carlos Parra Somoza
+</footer>
+<!-- BLADE: @endsection -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
